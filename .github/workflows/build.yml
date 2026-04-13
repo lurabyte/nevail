@@ -85,7 +85,7 @@ jobs:
           sudo apt-get remove -y google-cloud-cli
           sudo apt-get autoremove -y
 
-          sudo rm -rf /opt/hostedto  olcache/CodeQL
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
           sudo rm -rf /opt/hostedtoolcache/go
           sudo rm -rf /opt/hostedtoolcache/node
 
@@ -110,20 +110,9 @@ jobs:
 
           unset CC CXX
 
-          # Update config with Equicord extension if it was built
-          if [ -f "build/extensions/equicord.zip" ]; then
-            python3 << 'EOF'
-            import json
-            with open('application/config.json', 'r') as f:
-              config = json.load(f)
-            config['extensionURLs'] = ['file:///tmp/equicord.zip']
-            with open('application/config.json', 'w') as f:
-              json.dump(config, f, indent=2)
-            print("✅ Updated config with Equicord extension")
-            EOF
-          fi
-
-          python configurator.py --config-file=application/config.json -p ${{ matrix.platforms }} -b
+          npm install
+          npm run build
+          npm run configurator:build -- --config-file=application/config.json -p ${{ matrix.platforms }}
 
           # Remove swapfile
           sudo swapoff /swapfile_ || true
