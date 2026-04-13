@@ -1,0 +1,20 @@
+{
+  "policies": {
+    "DisplayMenuBar" : "never",
+    "Extensions": {
+      "Install": NEVAIL_EXTENSION_URLS
+    },
+    "Handlers": {
+      "schemes": {
+        "open": {
+          "action": "useHelperApp",
+          "ask": false,
+          "handlers": [{
+            "name": "default-browser",
+            "path": "/app/lib/NEVAIL_INTERNAL_APP_NAME/open-in-default-browser"
+          }]
+        }
+      }
+   }
+  }
+}

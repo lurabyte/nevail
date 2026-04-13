@@ -1,0 +1,16 @@
+{
+  "appName": "Nevail Discord",
+  "internalAppName": "nevail-discord",
+  "url": "https://discord.com/app",
+  "logoSvgFilePath": "./assets/images/logo.svg",
+  "platforms": ["flatpak"],
+  "version": "1.0.0",
+  "author": "xootzie",
+  "projectDescription": "Lightweight Discord app using Firefox/Gecko",
+  "projectURL": "",
+  "projectHelpURL": "",
+  "openInDefaultBrowser": true,
+  "openInDefaultBrowserRegex": "http[s]?://discord.com",
+  "runInBackground": true,
+  "extensionURLs": []
+}

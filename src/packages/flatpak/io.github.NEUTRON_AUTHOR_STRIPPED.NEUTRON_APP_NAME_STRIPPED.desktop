@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=NEVAIL_APP_NAME
+Exec=NEVAIL_INTERNAL_APP_NAME
+Icon=io.github.NEVAIL_AUTHOR_STRIPPED.NEVAIL_APP_NAME_STRIPPED
+Type=Application
+Categories=Network

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.NEVAIL_AUTHOR_STRIPPED.NEVAIL_APP_NAME_STRIPPED</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>NEVAIL_APP_NAME</name>
+  <summary>NEVAIL_APP_NAME</summary>
+  <description>
+    <p>
+      NEVAIL_PROJECT_DESCRIPTION
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.NEVAIL_AUTHOR_STRIPPED.NEVAIL_APP_NAME_STRIPPED.desktop</launchable>
+
+  <url type="homepage">NEVAIL_PROJECT_URL</url>
+  <developer_name>NEVAIL_AUTHOR_STRIPPED</developer_name>
+
+  <releases>
+    <release version="NEVAIL_VERSION" date="NEVAIL_CURRENT_DATE"/>
+  </releases>
+
+  <provides>
+    <binary>NEVAIL_INTERNAL_APP_NAME</binary>
+  </provides>
+
+  <content_rating type="oars-1.1">
+    
+  </content_rating>
+
+</component>

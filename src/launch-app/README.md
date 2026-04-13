@@ -1,0 +1,1 @@
+This program launches the nevail app. It assists with putting it into the tray.

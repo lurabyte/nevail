@@ -1,0 +1,75 @@
+{
+  "name": "nevail",
+  "version": "1.0.0",
+  "description": "An open-source tool for creating desktop applications based on web applications using Firefox/Gecko",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "nevail": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src_typescript/index.ts",
+    "configurator": "ts-node src_typescript/configurator.ts",
+    "configurator:build": "ts-node src_typescript/configurator.ts -b",
+    "pwa-configurator": "ts-node src_typescript/pwa_configurator.ts",
+    "build:app": "ts-node src_typescript/build.ts",
+    "lint": "eslint src_typescript --ext .ts",
+    "format": "prettier --write \"src_typescript/**/*.ts\"",
+    "clean": "rimraf dist build .mozbuild mozilla-unified",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "desktop",
+    "application",
+    "firefox",
+    "gecko",
+    "pwa",
+    "electron-alternative",
+    "cross-platform",
+    "app-builder",
+    "linux",
+    "flatpak"
+  ],
+  "author": "Nevail Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nevail/nevail.git"
+  },
+  "homepage": "https://github.com/nevail/nevail#readme",
+  "bugs": {
+    "url": "https://github.com/nevail/nevail/issues"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "child_process": "^1.0.2",
+    "commander": "^11.0.0",
+    "path": "^0.12.7",
+    "sharp": "^0.32.6",
+    "url": "^0.11.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "preferGlobal": true,
+  "files": [
+    "dist/",
+    "configurator.lang/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ]
+}

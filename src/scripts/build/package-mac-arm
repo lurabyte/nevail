@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+mkdir "NEVAIL_INTERNAL_APP_NAME-darwin-aarch64/NEVAIL_APP_NAME_STRIPPED.app"
+mv NEVAIL_INTERNAL_APP_NAME-darwin-aarch64/Contents "NEVAIL_INTERNAL_APP_NAME-darwin-aarch64/NEVAIL_APP_NAME_STRIPPED.app/"
+
+if [ -f NEVAIL_INTERNAL_APP_NAME-darwin-aarch64.dmg ]; then
+    rm NEVAIL_INTERNAL_APP_NAME-darwin-aarch64.dmg
+fi
+mozilla-unified/mach python -m mozbuild.action.make_dmg NEVAIL_INTERNAL_APP_NAME-darwin-aarch64 NEVAIL_INTERNAL_APP_NAME-darwin-aarch64.dmg --volume-name="NEVAIL_APP_NAME_STRIPPED" --dsstore=src/branding-template/dsstore

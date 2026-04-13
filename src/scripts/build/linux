@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -euo pipefail
+shopt -s extglob
+
+export MOZBUILD_STATE_PATH=$PWD/.mozbuild
+
+cd mozilla-unified
+
+cp -r ../src/changed/* .
+cp ../src/mozconfig.linux mozconfig
+
+with_ccache=""
+# Only enable sccache if sccache command is found
+if command -v sccache >&2; then
+    with_ccache="--with-ccache=sccache"
+fi
+
+./mach --no-interactive bootstrap --application-choice "Firefox for Desktop"
+./mach configure $with_ccache
+./mach build
+./mach package
+
+cd ..
+
+if [ -d  NEVAIL_INTERNAL_APP_NAME-linux-x86_64 ]; then
+    rm -r NEVAIL_INTERNAL_APP_NAME-linux-x86_64
+fi
+mkdir NEVAIL_INTERNAL_APP_NAME-linux-x86_64
+tar --strip-components=1 -xvf  mozilla-unified/obj-x86_64-pc-linux-gnu/dist/*.tar.@(bz2|xz) -C NEVAIL_INTERNAL_APP_NAME-linux-x86_64/
+cp -r src/distribution/ NEVAIL_INTERNAL_APP_NAME-linux-x86_64/
+mv NEVAIL_INTERNAL_APP_NAME-linux-x86_64/distribution/policies-linux.json NEVAIL_INTERNAL_APP_NAME-linux-x86_64/distribution/policies.json
+cp src/open-in-default-browser/open-in-default-browser NEVAIL_INTERNAL_APP_NAME-linux-x86_64/open-in-default-browser
