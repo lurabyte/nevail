@@ -1,4 +1,4 @@
-name: Test Build
+name: App Build
 
 permissions:
   contents: read
@@ -56,6 +56,22 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Setup Node.js and pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Build Equicord Extension
+        run: |
+          cd extern/equicord
+          npm install -g pnpm
+          pnpm install --frozen-lockfile
+          echo "Building Equicord web extension..."
+          pnpm buildWeb
+          mkdir -p ../../build/extensions
+          cp dist/*.zip ../../build/extensions/equicord.zip 2>/dev/null || echo "Note: Extension ZIP might have different name"
+          ls -la ../../build/extensions/ || true
+
       - name: Build
         run: |
           # Clear even more disk space
@@ -97,6 +113,19 @@ jobs:
           printf "\n\noverride_dh_strip:\n\t#nop" >> src/packages/debian/rules
 
           pip install -r requirements.txt
+
+          # Update config with Equicord extension if it was built
+          if [ -f "build/extensions/equicord.zip" ]; then
+            python3 << 'EOF'
+            import json
+            with open('application/config.json', 'r') as f:
+              config = json.load(f)
+            config['extensionURLs'] = ['file:///tmp/equicord.zip']
+            with open('application/config.json', 'w') as f:
+              json.dump(config, f, indent=2)
+            print("✅ Updated config with Equicord extension")
+            EOF
+          fi
 
           python configurator.py --config-file=application/config.json -p ${{ matrix.platforms }} -b
 
