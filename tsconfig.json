@@ -22,6 +22,13 @@
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
   },
+  "ts-node": {
+    "esm": true,
+    "experimentalEsm": true,
+    "moduleTypes": {
+      "src_typescript/**/*": "esm",
+    },
+  },
   "include": ["src_typescript/**/*"],
   "exclude": ["node_modules", "dist", "build", "src", "src_ts"],
 }

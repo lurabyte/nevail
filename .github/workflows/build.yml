@@ -113,6 +113,17 @@ jobs:
           npm install
           npm run build
           node dist/configurator.js -b --config-file=application/config.json -p ${{ matrix.platforms }}
+# Run the configurator to build flatpak using ts-node with ESM support
+export NODE_OPTIONS="--loader ts-node/esm --no-warnings=ExperimentalWarning"
+npx ts-node --esm src_typescript/configurator.ts -b --config-file=application/config.json -p ${{ matrix.platforms }}
+
+# Debug: List what was created in the build directory
+echo "=== Contents of build directory ==="
+ls -la build/ || echo "build directory does not exist"
+echo "=== Searching for flatpak files ==="
+find . -name "*.flatpak" -type f 2>/dev/null || echo "No flatpak files found"
+echo "=== Full build directory tree ==="
+tree build/ -L 3 2>/dev/null || find build/ -type f 2>/dev/null || echo "Cannot list build tree"
 
           # Remove swapfile
           sudo swapoff /swapfile_ || true
