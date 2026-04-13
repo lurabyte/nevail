@@ -1,5 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-tar -cjf NEVAIL_INTERNAL_APP_NAME-linux-x86_64.tar.bz2 NEVAIL_INTERNAL_APP_NAME-linux-x86_64 
