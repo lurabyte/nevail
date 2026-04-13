@@ -1,5 +1,4 @@
 import fs from "fs/promises";
-import path from "path";
 import { readFile, writeFile } from "fs/promises";
 
 export function makeAlphanumeric(
