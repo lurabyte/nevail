@@ -1,6 +1,6 @@
 {
   "appName": "Nevail Discord",
-  "internalAppName": "nevail-discord",
+  "internalAppName": "nevail",
   "url": "https://discord.com/app",
   "logoSvgFilePath": "./assets/images/logo.svg",
   "platforms": ["flatpak"],

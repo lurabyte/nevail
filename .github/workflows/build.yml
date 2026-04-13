@@ -110,8 +110,6 @@ jobs:
 
           unset CC CXX
 
-          pip install -r requirements.txt
-
           # Update config with Equicord extension if it was built
           if [ -f "build/extensions/equicord.zip" ]; then
             python3 << 'EOF'
