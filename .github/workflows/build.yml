@@ -112,7 +112,7 @@ jobs:
 
           npm install
           npm run build
-          npm run configurator:build -- --config-file=application/config.json -p ${{ matrix.platforms }}
+          node dist/configurator.js -b --config-file=application/config.json -p ${{ matrix.platforms }}
 
           # Remove swapfile
           sudo swapoff /swapfile_ || true
