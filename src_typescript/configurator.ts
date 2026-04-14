@@ -280,3 +280,8 @@ export async function main(): Promise<void> {
     rl.close();
   }
 }
+
+main().catch((error) => {
+  console.error("Fatal error:", error);
+  process.exit(1);
+});
