@@ -7,8 +7,9 @@ export MOZBUILD_STATE_PATH=$PWD/.mozbuild
 
 cd mozilla-unified
 
-cp -r ../src/changed/* .
-cp ../src/mozconfig.flatpak mozconfig
+# Copy from the build directory which contains the branding with replaced placeholders
+cp -r ../build/src/changed/* .
+cp ../build/src/mozconfig.flatpak mozconfig
 
 with_ccache=""
 # Only enable sccache if sccache command is found
@@ -16,7 +17,7 @@ if command -v sccache >&2; then
     with_ccache="--with-ccache=sccache"
 fi
 
-export CXXFLAGS="-fno-exceptions" 
+export CXXFLAGS="-fno-exceptions"
 ./mach configure --without-wasm-sandboxed-libraries $with_ccache
 ./mach build
 ./mach package
@@ -28,9 +29,9 @@ if [ -d  NEVAIL_INTERNAL_APP_NAME-linux ]; then
 fi
 mkdir NEVAIL_INTERNAL_APP_NAME-linux
 tar --strip-components=1 -xvf  mozilla-unified/obj-*-linux-gnu/dist/*.tar.@(bz2|xz) -C NEVAIL_INTERNAL_APP_NAME-linux/
-cp -r src/distribution/ NEVAIL_INTERNAL_APP_NAME-linux/
+cp -r build/src/distribution/ NEVAIL_INTERNAL_APP_NAME-linux/
 mv NEVAIL_INTERNAL_APP_NAME-linux/distribution/policies-flatpak.json NEVAIL_INTERNAL_APP_NAME-linux/distribution/policies.json
-cp src/open-in-default-browser/open-in-default-browser NEVAIL_INTERNAL_APP_NAME-linux/open-in-default-browser
+cp build/src/open-in-default-browser/open-in-default-browser NEVAIL_INTERNAL_APP_NAME-linux/open-in-default-browser
 
 mv NEVAIL_INTERNAL_APP_NAME-linux NEVAIL_INTERNAL_APP_NAME-linux_
 mkdir NEVAIL_INTERNAL_APP_NAME-linux

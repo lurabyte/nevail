@@ -19,8 +19,10 @@ if [ ! -d mozilla-unified ]; then
 	./mach --no-interactive bootstrap --application-choice "Firefox for Desktop"
 
 	echo "Applying universal patches"
-	for patch in ../src/patches/*.patch; do
-		patch -p1 < $patch
+	for patch in ../build/src/patches/*.patch; do
+		if [ -f "$patch" ]; then
+			patch -p1 < "$patch"
+		fi
 	done
 	echo "Done applying universal patches"
 
