@@ -2,7 +2,7 @@
   "appName": "Nevail Discord",
   "internalAppName": "nevail",
   "url": "https://discord.com/app",
-  "logoSvgFilePath": "./assets/images/logo.svg",
+  "logoSvgFilePath": "./application/assets/images/logo.svg",
   "platforms": ["flatpak"],
   "version": "1.0.0",
   "author": "xootzie",
