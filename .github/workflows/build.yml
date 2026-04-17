@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    timeout-minutes: 720
     strategy:
       fail-fast: false
       matrix:
@@ -87,7 +88,7 @@ jobs:
 
           sudo rm -rf /opt/hostedtoolcache/CodeQL
           sudo rm -rf /opt/hostedtoolcache/go
-          sudo rm -rf /opt/hostedtoolcache/node
+
 
           # Create extra swap
           sudo dd if=/dev/zero of=/swapfile_ bs=1024 count=10485760
@@ -104,7 +105,7 @@ jobs:
           # Install deps
           rustup target add ${{ matrix.toolchain-name }}
 
-          sudo apt install alsa pkg-config libssl-dev debhelper libappindicator3-1 libappindicator3-dev libglib2.0-dev
+          sudo apt install alsa pkg-config libssl-dev debhelper libappindicator3-1 libappindicator3-dev libglib2.0-dev libboost-all-dev cmake
 
           sudo apt-get clean
 
